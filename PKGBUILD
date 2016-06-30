@@ -28,6 +28,7 @@ source=(https://commondatastorage.googleapis.com/chromium-browser-official/chrom
         inox.desktop
         chromium-widevine.patch
         PNGImageDecoder.patch
+        product_logo_{16,22,24,32,48,64,128,256}.png
         https://raw.githubusercontent.com/gcarq/inox-patchset/$pkgver/disable-autofill-download-manager.patch
         https://raw.githubusercontent.com/gcarq/inox-patchset/$pkgver/disable-google-url-tracker.patch
         https://raw.githubusercontent.com/gcarq/inox-patchset/$pkgver/disable-default-extensions.patch
@@ -51,6 +52,14 @@ sha256sums=('2323da80158f86e465f8fe257f681816ad58d831aaebddbb5337d72c5a86a036'
             'ff3f939a8757f482c1c5ba35c2c0f01ee80e2a2273c16238370081564350b148'
             '4660344789c45c9b9e52cb6d86f7cb6edb297b39320d04f6947e5216d6e5f64c'
             'd9fd982ba6d50edb7743db6122b975ad1d3da5a9ad907c8ab7cf574395b186cd'
+            '71471fa4690894420f9e04a2e9a622af620d92ac2714a35f9a4c4e90fa3968dd'
+            '4a533acefbbc1567b0d74a1c0903e9179b8c59c1beabe748850795815366e509'
+            '7b88830c5e0e9819f514ad68aae885d427541a907e25607e47dee1b0f38975fd'
+            '8c10e3b03b13555b461add586422472e0a96d3af49a078d6d952bc0719ba9d94'
+            'cc08b771d83b7434c3173c27419bc7d1d4ee375256f3169ef2b9333ba1f2beeb'
+            '53a1e8da18069eb4d6ab3af9c923c22a0f020241a4839c3140e3601052ddf6ff'
+            '896993987d4ef9f0ac7db454f288117316c2c80ed0b6764019afd760db222dad'
+            '3df9b3bbdc07fde63d9e400954dcc6ab6e0e5454f0ef6447570eef0549337354'
             '2d4b600d8085f1d5b3b4f30f8cfc6741558b1c8721dc19dd6b4de2b8dbedd80d'
             'a7329d7f3099f6b8dfe4b7addeb7abbca1cf079139a86c6483a51fed0190478e'
             '241ffb6a5dfd4f331e11c87b70aa26a48475d52e14f5b9e86f6b69db7137ee84'
@@ -258,13 +267,8 @@ package() {
   install -Dm644 "$srcdir/$pkgname.desktop" \
     "$pkgdir/usr/share/applications/$pkgname.desktop"
 
-  for size in 22 24 48 64 128 256; do
-    install -Dm644 "chrome/app/theme/chromium/product_logo_$size.png" \
-      "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/$pkgname.png"
-  done
-
-  for size in 16 32; do
-    install -Dm644 "chrome/app/theme/default_100_percent/chromium/product_logo_$size.png" \
+  for size in 16 22 24 32 48 64 128 256; do
+    echo install -Dm644 "product_logo_$size.png" \
       "$pkgdir/usr/share/icons/hicolor/${size}x${size}/apps/$pkgname.png"
   done
 
